@@ -2,7 +2,7 @@
 
 # Variables
 REPO="https://github.com/anattadesign/grove-sdk.git"
-MAIN_BRANCH="main"
+MAIN_BRANCH="master"
 GH_PAGES_BRANCH="gh-pages"
 BUILD_DIR="build"
 
