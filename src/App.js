@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef, useState } from 'react';
+import CartDrawer from './components/CartDrawer';
+import AddToCartButton from './components/AddToCartButton';
 
 function App() {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const cartDrawerRef = useRef();
+
+  const updateCart = () => {
+    if (cartDrawerRef.current) {
+      cartDrawerRef.current.fetchCart();
+    }
+  };
+
+  const openCartDrawer = () => {
+    setIsCartOpen(true);
+  };
+
+  const closeCartDrawer = () => {
+    setIsCartOpen(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="p-4">
+      <button onClick={openCartDrawer} className="bg-blue-500 text-white px-4 py-2 rounded">Open Cart</button>
+      <CartDrawer ref={cartDrawerRef} isOpen={isCartOpen} closeDrawer={closeCartDrawer} />
+      <AddToCartButton variantId="your-variant-id" onCartUpdated={updateCart} />
     </div>
   );
 }
